@@ -12,4 +12,19 @@ class CashAppPayTest < Test::Unit::TestCase
     CashAppPay.client_id = 'test'
     assert_equal 'test', CashAppPay.api_base
   end
+
+  def test_that_region_can_be_configured
+    CashAppPay.region = 'test'
+    assert_equal 'test', CashAppPay.region
+  end
+
+  def test_that_signature_can_be_configured
+    CashAppPay.signature = 'test'
+    assert_equal 'test', CashAppPay.signature
+  end
+
+  def test_that_api_key_can_be_configured
+    CashAppPay.api_key = 'test'
+    assert_equal 'test', CashAppPay.api_key
+  end
 end

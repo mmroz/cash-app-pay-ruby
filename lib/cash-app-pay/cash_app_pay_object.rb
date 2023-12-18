@@ -9,8 +9,8 @@ module CashAppPay
     def initialize(values)
       @values = values.deep_symbolize_keys
       # TODO: - probably remove this since its always a symbol
-      @key_class = @values.empty? ? Symbol : @values.keys[0].class
-      self.class.assert_valid_key_class(@key_class)
+      # @key_class = @values.empty? ? Symbol : @values.keys[0].class
+      # self.class.assert_valid_key_class(@key_class)
     end
 
     def to_h(*_args)
@@ -26,6 +26,10 @@ module CashAppPay
 
     def to_s(*_args)
       JSON.pretty_generate(to_h)
+    end
+
+    def to_str
+      self['id']
     end
 
     def inspect
@@ -70,17 +74,18 @@ module CashAppPay
     end
 
     def typed_key(key)
-      @key_class == String ? key.to_s : key.to_sym
+      key.to_sym
+      # @key_class == String ? key.to_s : key.to_sym
     end
 
-    def self.assert_valid_key_class(key_class)
-      return if valid_key_classes.include?(key_class)
+    # def self.assert_valid_key_class(key_class)
+    #   return if valid_key_classes.include?(key_class)
+    #
+    #   raise "Invalid key_class #{key_class} must be one of #{valid_key_classes.join(' ')}"
+    # end
 
-      raise "Invalid key_class #{key_class} must be one of #{valid_key_classes.join(' ')}"
-    end
-
-    def self.valid_key_classes
-      [String, Symbol]
-    end
+    # def self.valid_key_classes
+    #   [String, Symbol]
+    # end
   end
 end

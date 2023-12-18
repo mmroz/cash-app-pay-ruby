@@ -3,9 +3,8 @@
 module CashAppPay
   class APIResource < CashAppPayObject
     include CashAppPay::APIOperations::Request::ClassMethods
-    # include CashAppPay::APIOperations::Request
 
-    attr_reader :opts
+    attr_reader :opts, :errors
 
     def initialize(values = {}, opts = {})
       super(values)
@@ -44,7 +43,7 @@ module CashAppPay
 
     def initialize_from(values, opts)
       @errors = values.fetch(:errors, [])
-      @values = values[self.class.object_name] || values
+      @values = values.fetch(self.class.object_name, {})
       @opts = opts
       self
     end

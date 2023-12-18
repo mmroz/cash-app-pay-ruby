@@ -1,17 +1,18 @@
 # frozen_string_literal: true
 
 module CashAppPay
-  class CustomerRequest < APIResource
+  class Webhook < APIResource
     extend CashAppPay::APIOperations::Create
     include CashAppPay::APIOperations::Save
     include CashAppPay::APIOperations::Update
+    extend CashAppPay::APIOperations::List
 
     def self.resource_url
-      '/customer-request/v1/requests'
+      '/management/v1/webhook-endpoints'
     end
 
     def self.object_name
-      :request
+      :webhook_endpoint
     end
   end
 end

@@ -6,6 +6,8 @@ module CashAppPay
       'C69597D4-B7B0-47A2-BAA8-5628F1E1BDC0'
     end
 
+    # Customer Request
+
     def self.make_pending_customer_request
       {
         request: {
@@ -67,12 +69,53 @@ module CashAppPay
       Hash[:request, make_customer_request_create_params, :idempotency_key, idempotency_key].to_json
     end
 
-    def self.make_response_headers(client_id)
+    # Payments
+
+    def self.make_payment
       {
-        'Accept' => 'application/json',
-        'Authorization' => "Client #{client_id}",
-        'Content-Type' => 'application/json'
+        "payment": {
+          "id": 'PWC_b1qk4mykgq3nbrdt2k4fpq3r8',
+          "amount": 8901,
+          "refunded_amount": 0,
+          "captured_amount": 8901,
+          "voided_amount": 0,
+          "net_amount": 8901,
+          "currency": 'USD',
+          "customer_id": 'CST_AYVkuLxYJzXOsNYwGNTRifgOjcc43RXyKVBaUkIa0Cqg2nrD0FYSIXT5_diVv3gmHu00ykra_i-fJpPWvP505bOzYsAMZyLYSpHB9oo0CGgAIg',
+          "merchant_id": 'MMI_b576ooozuetfuzdujpuggzgpx',
+          "grant_id": 'GRG_AZYyHv3xSfv1Rly_oJEbZbVKepAsD5p0o3YoYE4wM-QNP0CnjtvvoRCB2TPJNdOcZ05EaNvx4mbppXxRdLlPHpEFyZs92dYGugsOSl83HyWIuo6KmtbuOvqbDPVroVwdnMUdP2f1FqcUpgjvOqjfgLTovAgprqpSCEagxeN8lHk',
+          "order_id": 'ORD_dbiugt29n7iubmlcgokwl77n8',
+          "status": 'CAPTURED',
+          "created_at": '2023-12-17T14:29:50.700Z',
+          "updated_at": '2023-12-17T14:29:53.211Z',
+          "metadata": {},
+          "capture_before": '2023-12-24T14:29:50.836Z'
+        }
       }
+    end
+
+    def self.make_payments_list
+      {
+        "payments": [
+          make_payment
+        ],
+        "cursor": 'Cgl0dmNqa3R4MHk='
+      }
+    end
+
+    def self.make_payment_create_params
+      { 'amount' => 100,
+        'currency' => 'USD',
+        'merchant_id' => 'MMI_4vxs5egfk7hmta3qx2h6rp91x',
+        'grant_id' => 'GRG_221243dc6985a6819ff6950c1a21332f7bc4a46ebd49b5a7002908ab768e8e5ff7831e084d0d2c9d8d939793b55eff50',
+        'reference_id' => 'external-id',
+        'capture' => true,
+        'metadata' => { 'key' => 'value' },
+        'enrichments' => { 'recurring_series_id' => 'string' } }
+    end
+
+    def self.make_payment_create_params_json
+      Hash[:payment, make_payment_create_params, :idempotency_key, idempotency_key].to_json
     end
   end
 end
