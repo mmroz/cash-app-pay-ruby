@@ -1,4 +1,6 @@
-/cash-app-pay-*.gem
+cash_app_pay-*.gem
+.byebug_history
+cash_app_pay-*/
 /Gemfile.lock
 .rvmrc
 Gemfile.lock

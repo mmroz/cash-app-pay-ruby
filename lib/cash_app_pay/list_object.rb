@@ -50,7 +50,6 @@ module CashAppPay
     def auto_paging_each(&blk)
       page = self
       loop do
-        debugger
         page.each(&blk)
         page = page.next_page
         break if page.empty?

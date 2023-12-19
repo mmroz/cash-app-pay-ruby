@@ -10,33 +10,33 @@ require 'securerandom'
 require 'time'
 
 # Version
-require 'cash-app-pay/version'
+require 'cash_app_pay/version'
 
 # Helpers
-require 'cash-app-pay/helpers/symbolize'
+require 'cash_app_pay/helpers/symbolize'
 
 # API operations
-require 'cash-app-pay/api_operations/create'
-require "cash-app-pay/api_operations/list"
-require 'cash-app-pay/api_operations/request'
-require 'cash-app-pay/api_operations/update'
-require 'cash-app-pay/api_operations/save'
+require 'cash_app_pay/api_operations/create'
+require "cash_app_pay/api_operations/list"
+require 'cash_app_pay/api_operations/request'
+require 'cash_app_pay/api_operations/update'
+require 'cash_app_pay/api_operations/save'
 
-require 'cash-app-pay/errors'
-require 'cash-app-pay/utils'
-require 'cash-app-pay/connection_manager'
-require 'cash-app-pay/persistent_http_client'
-require 'cash-app-pay/cash_app_pay_client'
-require 'cash-app-pay/cash_app_pay_object'
-require 'cash-app-pay/cash_app_pay_response'
-require "cash-app-pay/list_object"
-require 'cash-app-pay/api_resource'
-require 'cash-app-pay/cash_app_pay_configuration'
+require 'cash_app_pay/errors'
+require 'cash_app_pay/utils'
+require 'cash_app_pay/connection_manager'
+require 'cash_app_pay/persistent_http_client'
+require 'cash_app_pay/cash_app_pay_client'
+require 'cash_app_pay/cash_app_pay_object'
+require 'cash_app_pay/cash_app_pay_response'
+require "cash_app_pay/list_object"
+require 'cash_app_pay/api_resource'
+require 'cash_app_pay/cash_app_pay_configuration'
 
 # Named API resources
-require 'cash-app-pay/resources/customer_request'
-require 'cash-app-pay/resources/payment'
-require "cash-app-pay/resources/webhook"
+require 'cash_app_pay/resources/customer_request'
+require 'cash_app_pay/resources/payment'
+require "cash_app_pay/resources/webhook"
 
 module CashAppPay
   @config = CashAppPay::CashAppPayConfiguration.setup
@@ -72,7 +72,7 @@ end
 #           'scope_id' => 'BRAND_3j34fnbmjqs8jf5u67j25fow3'
 #         }
 #       ] }
-#
+# debugger
 # customer_request = CashAppPay::CustomerRequest.create(params)
 # puts 'Created: '
 # debugger
