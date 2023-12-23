@@ -21,7 +21,6 @@ module CashAppPay
     end
 
     def self.initialize_from_response(klass, response, opts, filters)
-      debugger
       key = "#{klass.object_name}s".to_sym
       list_data = response.data
       entries = list_data[key].map { |entry| klass.new(entry, opts) }

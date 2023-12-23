@@ -2,7 +2,7 @@
 
 module CashAppPay
   class APIResource < CashAppPayObject
-    include CashAppPay::APIOperations::Request::ClassMethods
+    include CashAppPay::APIOperations::Request
 
     attr_reader :opts, :errors
 
@@ -17,7 +17,7 @@ module CashAppPay
     end
 
     def refresh
-      resp, opts = execute_resource_request(:get, resource_url, nil, @opts)
+      resp, opts = execute_resource_request(method: :get, url: resource_url, opts: @opts)
       initialize_from(resp.data, opts)
     end
 
@@ -27,10 +27,10 @@ module CashAppPay
       instance
     end
 
-    # TODO: - move to private?
+
     def request_cash_app_pay_object(method:, path:, params:, opts: {})
       body = self.class.encode_body(params) unless params.nil?
-      response, opts = execute_resource_request(method, path, body, opts)
+      response, opts = execute_resource_request(method: method,url: path, body_params: body, opts: opts)
       initialize_from(response.data, opts)
     end
 

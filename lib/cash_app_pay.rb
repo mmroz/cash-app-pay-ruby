@@ -142,7 +142,7 @@ end
 # debugger
 
 # debugger
-# #payments = CashAppPay::Webhook.list({})
+# payments = CashAppPay::Webhook.list({})
 # debugger
 # payments = CashAppPay::Webhook.retrieve('WC_bpyng096855q5muggzxwgvl99')
 # debugger
