@@ -36,8 +36,6 @@ module CashAppPay
       # CashAppPayResponse.from_net_http(response)
     end
 
-    private
-
     CUSTOMER_REQUEST_API_PATH_PREFIX = '/customer-request/'
     NETWORK_API_PATH_PREFIX = '/network/'
     MANAGE_API_PATH_PREFIX = '/management/'

@@ -3,21 +3,28 @@
 module CashAppPay
   module APIOperations
     module Update
-      # TODO: - currently updating a property then calling update does not work
-      # in the future update this so that we can call:
-      # cr = CashAppPay::CustomerRequest.retrieve(...)
-      # cr.metadata = {new: :value}
-      # cr.update
-      # right now we have to call cr.update({request: {metadata: {new: :value}}})
       def update(params = {}, opts = {})
-        resource_parameters = self.class.resource_parameters(params)
-        response, opts = request_cash_app_pay_object(
+        request_cash_app_pay_object(
           method: :patch,
           path: resource_url,
-          params: resource_parameters,
+          params: self.class.encode_body(params),
           opts: opts
         )
-        initialize_from(response.data, opts)&.errors&.empty? || true
+      end
+
+      def self.included(base)
+        base.extend(ClassMethods)
+      end
+
+      module ClassMethods
+        def update(resource, params = {}, opts = {})
+          request_cash_app_pay_object(
+            method: :patch,
+            path: "#{self.class.resource_url}/#{CGI.escape(resource)}",
+            params: params,
+            opts: opts
+          )
+        end
       end
     end
   end

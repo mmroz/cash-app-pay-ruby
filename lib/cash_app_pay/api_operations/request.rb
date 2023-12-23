@@ -5,8 +5,8 @@ module CashAppPay
     module Request
       module ClassMethods
         def execute_resource_request(method, url, params = nil, opts = {})
-          body = CashAppPay::CashAppPayClient.execute_api_request(method, url, params, opts)
-          [body, opts]
+          response = CashAppPay::CashAppPayClient.execute_api_request(method, url, params, opts)
+          [response, opts]
         end
 
         def self.included(base)
@@ -16,8 +16,9 @@ module CashAppPay
         private
 
         def request_cash_app_pay_object(method:, path:, params:, opts: {})
-          body = params.to_json unless params.nil?
-          execute_resource_request(method, path, body, opts)
+          body = encode_body(params) unless params.nil?
+          response, opts = execute_resource_request(method, path, body, opts)
+          initialize_from_net_response(response, opts)
         end
       end
     end

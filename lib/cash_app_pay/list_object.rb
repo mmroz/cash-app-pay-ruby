@@ -1,12 +1,12 @@
+# frozen_string_literal: true
+
 module CashAppPay
-  class ListObject # TODO - I can make this a sublcass of CashAppPay::APIResource
+  # TODO: - I can make this a sublcass of CashAppPay::APIResource
+  class ListObject
     include Enumerable
 
     attr_accessor :filters
-    attr_accessor :data
-    attr_accessor :cursor
-    attr_accessor :opts
-    attr_accessor :klass
+    attr_accessor :data, :cursor, :opts, :klass
 
     def self.empty_list(klass, opts = {}, cursor = nil, filters = {})
       ListObject.new(klass, [], cursor, opts, filters)
@@ -24,7 +24,6 @@ module CashAppPay
       debugger
       key = "#{klass.object_name}s".to_sym
       list_data = response.data
-      # make each entry the realized class for entry e.g. CashAppPay::Payment
       entries = list_data[key].map { |entry| klass.new(entry, opts) }
       cursor = list_data[:cursor]
       new(klass, entries, cursor, opts, filters)
@@ -56,9 +55,7 @@ module CashAppPay
       end
     end
 
-
     def next_page(params = {}, opts = {})
-
       return self.class.empty_list(klass, opts, nil, filters) if cursor.nil?
 
       params = filters.merge(cursor: cursor).merge(params)

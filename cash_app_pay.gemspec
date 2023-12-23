@@ -1,19 +1,21 @@
-$LOAD_PATH.unshift(::File.join(::File.dirname(__FILE__), "lib"))
+# frozen_string_literal: true
+
+$LOAD_PATH.unshift(::File.join(::File.dirname(__FILE__), 'lib'))
 
 require 'cash_app_pay/version'
 
 Gem::Specification.new do |s|
-  s.name        = "cash_app_pay"
-  s.version     = "1.0.0"
-  s.summary     = "Cash App Pay"
-  s.description = "Cash App Pay gem"
-  s.authors     = ["Mark Mroz"]
-  s.email       = "mmroz@squareup.com"
-  s.homepage    = "https://rubygems.org/gems/hola"
-  s.license     = "MIT"
+  s.name        = 'cash_app_pay'
+  s.version     = '1.0.0'
+  s.summary     = 'Cash App Pay'
+  s.description = 'Cash App Pay gem'
+  s.authors     = ['Mark Mroz']
+  s.email       = 'mmroz@squareup.com'
+  s.homepage    = 'https://rubygems.org/gems/hola'
+  s.license     = 'MIT'
 
   s.files = [
-    "lib/cash_app_pay.rb",
+    'lib/cash_app_pay.rb',
 
     'lib/cash_app_pay/version.rb',
     'lib/cash_app_pay/helpers/symbolize.rb',

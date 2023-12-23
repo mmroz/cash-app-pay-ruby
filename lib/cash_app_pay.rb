@@ -17,7 +17,7 @@ require 'cash_app_pay/helpers/symbolize'
 
 # API operations
 require 'cash_app_pay/api_operations/create'
-require "cash_app_pay/api_operations/list"
+require 'cash_app_pay/api_operations/list'
 require 'cash_app_pay/api_operations/request'
 require 'cash_app_pay/api_operations/update'
 require 'cash_app_pay/api_operations/save'
@@ -29,14 +29,14 @@ require 'cash_app_pay/persistent_http_client'
 require 'cash_app_pay/cash_app_pay_client'
 require 'cash_app_pay/cash_app_pay_object'
 require 'cash_app_pay/cash_app_pay_response'
-require "cash_app_pay/list_object"
+require 'cash_app_pay/list_object'
 require 'cash_app_pay/api_resource'
 require 'cash_app_pay/cash_app_pay_configuration'
 
 # Named API resources
 require 'cash_app_pay/resources/customer_request'
 require 'cash_app_pay/resources/payment'
-require "cash_app_pay/resources/webhook"
+require 'cash_app_pay/resources/webhook'
 
 module CashAppPay
   @config = CashAppPay::CashAppPayConfiguration.setup
@@ -71,7 +71,8 @@ end
 #           'type' => 'ONE_TIME_PAYMENT',
 #           'scope_id' => 'BRAND_3j34fnbmjqs8jf5u67j25fow3'
 #         }
-#       ] }
+#       ],
+#            'idempotency_key' => 'abc-123' }
 # debugger
 # customer_request = CashAppPay::CustomerRequest.create(params)
 # puts 'Created: '
@@ -89,13 +90,15 @@ end
 # puts 'Refreshed: '
 # puts refreshed
 #
+# debugger
 # saved = CashAppPay::CustomerRequest.new(params)
 # saved.save
-#
+# debugger
 # puts 'Saved: '
 # puts saved
-# puts saved.id
-#
+
+# debugger
+
 # update_params = { "actions": [
 #                     {
 #                       "amount": 2500,
@@ -108,7 +111,9 @@ end
 #                   "metadata": {
 #                     "key": 'value'
 #                   } }
-#
+
+# debugger
+
 # saved.update(update_params)
 # debugger
 

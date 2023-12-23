@@ -29,8 +29,9 @@ module CashAppPay
 
     # TODO: - move to private?
     def request_cash_app_pay_object(method:, path:, params:, opts: {})
-      body = params.to_json unless params.nil?
-      execute_resource_request(method, path, body, opts)
+      body = self.class.encode_body(params) unless params.nil?
+      response, opts = execute_resource_request(method, path, body, opts)
+      initialize_from(response.data, opts)
     end
 
     private
@@ -58,8 +59,15 @@ module CashAppPay
       "#{self.class.resource_url}/#{CGI.escape(id)}"
     end
 
-    def self.resource_parameters(params)
-      Hash[object_name, params]
+    # Encode the params for the body of the request.
+    # If the params contains `idempotency_key` then put this at the root
+    # e.g. { request: { id: 1 }, idempotency_key: 'key' }
+    # params: Hash of params
+    def self.encode_body(params)
+      idempotency_key = params.delete(:idempotency_key) || params.delete('idempotency_key')
+      body = Hash[object_name, params]
+      body[:idempotency_key] = idempotency_key unless idempotency_key.nil?
+      body.to_json
     end
   end
 end

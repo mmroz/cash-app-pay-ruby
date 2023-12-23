@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CashAppPay
   module APIOperations
     module List
