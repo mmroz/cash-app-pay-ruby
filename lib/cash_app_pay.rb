@@ -37,6 +37,7 @@ require 'cash_app_pay/cash_app_pay_configuration'
 require 'cash_app_pay/resources/customer_request'
 require 'cash_app_pay/resources/payment'
 require 'cash_app_pay/resources/webhook'
+require 'cash_app_pay/resources/fee_plan'
 
 module CashAppPay
   @config = CashAppPay::CashAppPayConfiguration.setup

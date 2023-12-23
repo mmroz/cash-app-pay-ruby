@@ -3,14 +3,14 @@
 module CashAppPay
   module APIOperations
     module Request
-
       def self.included(base)
         base.extend(ClassMethods)
       end
 
       module ClassMethods
         def execute_resource_request(method:, url:, url_params: nil, body_params: nil, opts: {})
-          response = CashAppPay::CashAppPayClient.execute_api_request(method_name: method, path: url, url_params: url_params, body_params: body_params, opts: opts)
+          response = CashAppPay::CashAppPayClient.execute_api_request(method_name: method, path: url,
+                                                                      url_params: url_params, body_params: body_params, opts: opts)
           [response, opts]
         end
 

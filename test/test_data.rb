@@ -117,5 +117,55 @@ module CashAppPay
     def self.make_payment_create_params_json
       Hash[:payment, make_payment_create_params, :idempotency_key, idempotency_key].to_json
     end
+
+    # Fee plan
+
+    module FeePlan
+      def self.fee_plan
+        {
+          "id": 'FEE_kewjsmjt35t8qhzyjeqcst5me',
+          "rate": {
+            "basis_points": 160,
+            "fixed_amount": 20
+          },
+          "currency": 'USD',
+          "status": 'ACTIVE',
+          "reference_id": 'external-id',
+          "metadata": {},
+          "created_at": '2023-01-01T12:00:00Z',
+          "updated_at": '2023-01-01T12:00:00Z'
+        }
+      end
+
+      def make_fee_plan
+        { "fee_plan": fee_plan }
+      end
+
+      def make_fee_plan_list
+        { "fee_plans": [fee_plan], "cursor": 'Cgl0dmNqa3R4MHk=' }
+      end
+
+      module_function :make_fee_plan, :make_fee_plan_list
+    end
+
+    module API
+      API_BASE = 'sandbox.api.cash.app'
+      CLIENT_ID = 'test_client_id'
+      REGION = 'test_region'
+      SIGNATURE = 'test_signature'
+      API_KEY = 'test_api_key'
+
+      def network_api_headers(client_id = CLIENT_ID, api_key = API_KEY, region = REGION, signature = SIGNATURE)
+        {
+          "Authorization": "Client #{client_id} #{api_key}",
+          "X-Region": region,
+          "X-Signature": signature,
+          "Accept": 'application/json',
+          "Content-Type": 'application/json'
+        }
+      end
+
+      module_function :network_api_headers
+    end
   end
 end
