@@ -5,6 +5,7 @@ module CashAppPay
     extend CashAppPay::APIOperations::Create
     include CashAppPay::APIOperations::Save
     extend CashAppPay::APIOperations::List
+    include CashAppPay::APIOperations::Retrieve
 
     def self.resource_url
       '/network/v1/payments'

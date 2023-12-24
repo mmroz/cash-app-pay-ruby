@@ -6,7 +6,7 @@ module CashAppPay
     include Enumerable
 
     attr_accessor :filters
-    attr_accessor :data, :cursor, :opts, :klass
+    attr_accessor :data, :errors, :cursor, :opts, :klass
 
     def self.empty_list(klass, opts = {}, cursor = nil, filters = {})
       ListObject.new(klass, [], cursor, opts, filters)
@@ -23,7 +23,8 @@ module CashAppPay
     def self.initialize_from_response(klass, response, opts, filters)
       key = "#{klass.object_name}s".to_sym
       list_data = response.data
-      entries = list_data[key].map { |entry| klass.new(entry, opts) }
+      errors = response&.data&.fetch(:errors, {}) || []
+      entries = list_data[key]&.map { |entry| klass.new(entry, opts) } || []
       cursor = list_data[:cursor]
       new(klass, entries, cursor, opts, filters)
     end

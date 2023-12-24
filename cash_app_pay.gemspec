@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
     'lib/cash_app_pay/api_operations/request.rb',
     'lib/cash_app_pay/api_operations/update.rb',
     'lib/cash_app_pay/api_operations/save.rb',
+    'lib/cash_app_pay/api_operations/retrieve.rb',
     'lib/cash_app_pay/errors.rb',
     'lib/cash_app_pay/utils.rb',
     'lib/cash_app_pay/connection_manager.rb',
@@ -37,7 +38,8 @@ Gem::Specification.new do |s|
     'lib/cash_app_pay/resources/customer_request.rb',
     'lib/cash_app_pay/resources/payment.rb',
     'lib/cash_app_pay/resources/webhook.rb',
-    'lib/cash_app_pay/resources/fee_plan.rb'
+    'lib/cash_app_pay/resources/fee_plan.rb',
+    'lib/cash_app_pay/resources/grant.rb'
   ]
 
   s.require_paths = ['lib']

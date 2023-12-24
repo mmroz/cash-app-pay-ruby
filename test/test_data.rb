@@ -148,6 +148,54 @@ module CashAppPay
       module_function :make_fee_plan, :make_fee_plan_list
     end
 
+    module Customer
+      def self.customer
+        {
+          "id": "CST_AQmxh4y_QGoNNIG5NUw0jttqyYedL1LklACQdyJ3H-Vs6WmLtP6A_C7XjQNohvY",
+          "cashtag": "string",
+          "reference_id": "CUST_123"
+        }
+      end
+
+      def make_customer
+        { "customer": customer }
+      end
+
+      def make_customer_list
+        { "customers": [customer], "cursor": 'Cgl0dmNqa3R4MHk=' }
+      end
+
+      module_function :make_customer, :make_customer_list
+    end
+
+    module Grant
+      def self.grant
+        {
+          "id": "GRG_221243dc6985a6819ff6950c1a21332f7bc4a46ebd49b5a7002908ab768e8e5ff7831e084d0d2c9d8d939793b55eff50",
+          "customer_id": "CST_AQmxh4y_QGoNNIG5NUw0jttqyYedL1LklACQdyJ3H-Vs6WmLtP6A_C7XjQNohvY",
+          "request_id": "GRR_1hrxhz136krcq6ezdte2ha5q",
+          "action": {
+            "amount": 2500,
+            "currency": "USD",
+            "scope_id": "MMI_4vxs5egfk7hmta3qx2h6rp91x",
+            "type": "ONE_TIME_PAYMENT"
+          },
+          "status": "ACTIVE",
+          "type": "ONE_TIME",
+          "channel": "ONLINE",
+          "created_at": "2019-08-24T14:15:22Z",
+          "updated_at": "2019-08-24T14:15:22Z",
+          "expires_at": "2022-04-01T12:00:00Z"
+        }
+      end
+
+      def make_grant
+        { "grant": grant }
+      end
+
+      module_function :make_grant
+    end
+
     module API
       API_BASE = 'sandbox.api.cash.app'
       CLIENT_ID = 'test_client_id'

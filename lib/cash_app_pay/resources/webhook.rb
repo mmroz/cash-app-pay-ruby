@@ -6,6 +6,7 @@ module CashAppPay
     include CashAppPay::APIOperations::Save
     include CashAppPay::APIOperations::Update
     extend CashAppPay::APIOperations::List
+    include CashAppPay::APIOperations::Retrieve
 
     def self.resource_url
       '/management/v1/webhook-endpoints'

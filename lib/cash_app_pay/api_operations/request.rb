@@ -14,8 +14,6 @@ module CashAppPay
           [response, opts]
         end
 
-        private
-
         def request_cash_app_pay_object(method:, path:, params:, opts: {})
           body = encode_body(params) unless params.nil?
           response, opts = execute_resource_request(method: method, url: path, body_params: body, opts: opts)

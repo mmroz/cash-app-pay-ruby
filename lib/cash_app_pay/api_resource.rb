@@ -16,16 +16,16 @@ module CashAppPay
       raise NotImplementedError, 'Api Resource is an abstract class'
     end
 
-    def refresh
-      resp, opts = self.class.execute_resource_request(method: :get, url: resource_url, opts: @opts)
-      initialize_from(resp.data, opts)
-    end
+    # def refresh
+    #   resp, opts = self.class.execute_resource_request(method: :get, url: resource_url, opts: @opts)
+    #   initialize_from(resp.data, opts)
+    # end
 
-    def self.retrieve(id, opts = {})
-      instance = new({ id: id }, opts)
-      instance.refresh
-      instance
-    end
+    # def self.retrieve(id, opts = {})
+    #   instance = new({ id: id }, opts)
+    #   instance.refresh
+    #   instance
+    # end
 
     def request_cash_app_pay_object(method:, path:, params:, opts: {})
       body = self.class.encode_body(params) unless params.nil?

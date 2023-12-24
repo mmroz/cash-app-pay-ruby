@@ -5,6 +5,7 @@ module CashAppPay
     extend CashAppPay::APIOperations::Create
     include CashAppPay::APIOperations::Save
     include CashAppPay::APIOperations::Update
+    include CashAppPay::APIOperations::Retrieve
 
     def self.resource_url
       '/customer-request/v1/requests'

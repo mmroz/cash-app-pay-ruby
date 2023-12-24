@@ -21,6 +21,7 @@ require 'cash_app_pay/api_operations/list'
 require 'cash_app_pay/api_operations/request'
 require 'cash_app_pay/api_operations/update'
 require 'cash_app_pay/api_operations/save'
+require 'cash_app_pay/api_operations/retrieve'
 
 require 'cash_app_pay/errors'
 require 'cash_app_pay/utils'
@@ -38,6 +39,8 @@ require 'cash_app_pay/resources/customer_request'
 require 'cash_app_pay/resources/payment'
 require 'cash_app_pay/resources/webhook'
 require 'cash_app_pay/resources/fee_plan'
+require 'cash_app_pay/resources/customer'
+require 'cash_app_pay/resources/grant'
 
 module CashAppPay
   @config = CashAppPay::CashAppPayConfiguration.setup
