@@ -44,7 +44,8 @@ Gem::Specification.new do |s|
     'lib/cash_app_pay/resources/dispute.rb',
     'lib/cash_app_pay/resources/dispute_evidence.rb',
     'lib/cash_app_pay/resources/merchant.rb',
-    'lib/cash_app_pay/resources/refund.rb'
+    'lib/cash_app_pay/resources/refund.rb',
+    'lib/cash_app_pay/resources/api_key.rb'
   ]
 
   s.require_paths = ['lib']

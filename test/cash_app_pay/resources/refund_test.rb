@@ -60,41 +60,41 @@ class RefundTest < Test::Unit::TestCase
   def test_capture
     stub_request(:post, 'https://sandbox.api.cash.app/network/v1/refunds/PWCR_1/capture')
       .with(
-        body: {:idempotency_key => 'idempotency'}.to_json,
+        body: { idempotency_key: 'idempotency' }.to_json,
         headers: CashAppPay::TestData::API.network_api_headers
       )
       .to_return(status: 200, body: CashAppPay::TestData::Refund.make_refund.to_json)
     refund = CashAppPay::Refund.new(id: 'PWCR_1')
-    captured_refund = CashAppPay::Refund.capture(refund, {idempotency_key: 'idempotency'})
+    captured_refund = CashAppPay::Refund.capture(refund, { idempotency_key: 'idempotency' })
     assert_equal 'AUTHORIZED', captured_refund.status
 
-    captured_refund = CashAppPay::Refund.new(id: 'PWCR_1').capture({idempotency_key: 'idempotency'})
+    captured_refund = CashAppPay::Refund.new(id: 'PWCR_1').capture({ idempotency_key: 'idempotency' })
     assert_equal 'AUTHORIZED', captured_refund.status
   end
 
   def test_void
     stub_request(:post, 'https://sandbox.api.cash.app/network/v1/refunds/PWCR_1/void')
-    .with(
-      headers: CashAppPay::TestData::API.network_api_headers
-    )
-    .to_return(status: 200, body: CashAppPay::TestData::Refund.make_refund.to_json)
-  refund = CashAppPay::Refund.new(id: 'PWCR_1')
-  voided_refund = CashAppPay::Refund.void(refund)
-  assert_equal 'AUTHORIZED', voided_refund.status
+      .with(
+        headers: CashAppPay::TestData::API.network_api_headers
+      )
+      .to_return(status: 200, body: CashAppPay::TestData::Refund.make_refund.to_json)
+    refund = CashAppPay::Refund.new(id: 'PWCR_1')
+    voided_refund = CashAppPay::Refund.void(refund)
+    assert_equal 'AUTHORIZED', voided_refund.status
 
-  voided_refund = refund.void()
-  assert_equal 'AUTHORIZED', voided_refund.status
+    voided_refund = refund.void
+    assert_equal 'AUTHORIZED', voided_refund.status
   end
 
   def test_void_by_idempotency_key
     stub_request(:post, 'https://sandbox.api.cash.app/network/v1/refunds/void-by-idempotency-key')
-    .with(
-      body: {idempotency_key: 'idempotency'}.to_json,
-      headers: CashAppPay::TestData::API.network_api_headers
-    )
-    .to_return(status: 200, body: CashAppPay::TestData::Refund.make_refund.to_json)
-  refund = CashAppPay::Refund.new(id: 'PWCR_1')
-  voided_refund = CashAppPay::Refund.void_by_idempotency_key({idempotency_key: 'idempotency'})
-  assert_equal 'AUTHORIZED', voided_refund.status
+      .with(
+        body: { idempotency_key: 'idempotency' }.to_json,
+        headers: CashAppPay::TestData::API.network_api_headers
+      )
+      .to_return(status: 200, body: CashAppPay::TestData::Refund.make_refund.to_json)
+    CashAppPay::Refund.new(id: 'PWCR_1')
+    voided_refund = CashAppPay::Refund.void_by_idempotency_key({ idempotency_key: 'idempotency' })
+    assert_equal 'AUTHORIZED', voided_refund.status
   end
 end

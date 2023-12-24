@@ -7,6 +7,7 @@ module CashAppPay
     extend CashAppPay::APIOperations::List
     include CashAppPay::APIOperations::Retrieve
     include CashAppPay::APIOperations::Update
+    include CashAppPay::APIOperations::Upsert
 
     def self.resource_url
       '/network/v1/brands'
@@ -14,15 +15,6 @@ module CashAppPay
 
     def self.object_name
       :brand
-    end
-
-    def self.upsert(brand, params = {}, opts = {})
-      request_cash_app_pay_object(
-        method: :put,
-        path: "#{resource_url}/#{CGI.escape(brand)}",
-        params: params,
-        opts: opts
-      )
     end
   end
 end

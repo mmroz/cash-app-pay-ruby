@@ -47,6 +47,7 @@ require 'cash_app_pay/resources/dispute'
 require 'cash_app_pay/resources/dispute_evidence'
 require 'cash_app_pay/resources/merchant'
 require 'cash_app_pay/resources/refund'
+require 'cash_app_pay/resources/api_key'
 
 module CashAppPay
   @config = CashAppPay::CashAppPayConfiguration.setup

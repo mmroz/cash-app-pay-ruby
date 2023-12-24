@@ -66,12 +66,12 @@ module CashAppPay
     def self.encode_body(params)
       idempotency_key = params.delete(:idempotency_key) || params.delete('idempotency_key')
       body = if params.empty? && !idempotency_key.nil?
-        {idempotency_key: idempotency_key}
-      else
-        named_body_params = Hash[object_name, params]
-        named_body_params[:idempotency_key] = idempotency_key unless idempotency_key.nil?
-        named_body_params
-      end
+               { idempotency_key: idempotency_key }
+             else
+               named_body_params = Hash[object_name, params]
+               named_body_params[:idempotency_key] = idempotency_key unless idempotency_key.nil?
+               named_body_params
+             end
       body.to_json
     end
   end

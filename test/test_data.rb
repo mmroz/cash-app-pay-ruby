@@ -349,6 +349,39 @@ module CashAppPay
       module_function :make_refund, :make_refund_list, :make_params
     end
 
+    module ApiKey
+      def self.api_key
+        {
+          "id": 'KEY_2f6cd0d5cc26b34ac8785026b149797ecc0758be3dc3a857d405f2f62074ef30',
+          "created_at": '2022-01-01T00:00:00Z',
+          "expires_at": '2022-02-01T00:00:00Z',
+          "scopes": [
+            'PAYMENTS_READ'
+          ],
+          "reference_id": 'string'
+        }
+      end
+
+      def make_params
+        {
+          "scopes": [
+            'PAYMENTS_READ'
+          ],
+          "reference_id": 'string'
+        }
+      end
+
+      def make_api_key
+        { "api_key": api_key }
+      end
+
+      def make_api_key_list
+        { "api_keys": [api_key], "cursor": 'Cgl0dmNqa3R4MHk=' }
+      end
+
+      module_function :make_api_key, :make_api_key_list, :make_params
+    end
+
     module API
       API_BASE = 'sandbox.api.cash.app'
       CLIENT_ID = 'test_client_id'
