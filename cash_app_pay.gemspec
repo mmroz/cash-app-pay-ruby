@@ -16,7 +16,6 @@ Gem::Specification.new do |s|
 
   s.files = [
     'lib/cash_app_pay.rb',
-
     'lib/cash_app_pay/version.rb',
     'lib/cash_app_pay/helpers/symbolize.rb',
     'lib/cash_app_pay/api_operations/create.rb',
@@ -44,7 +43,8 @@ Gem::Specification.new do |s|
     'lib/cash_app_pay/resources/brand.rb',
     'lib/cash_app_pay/resources/dispute.rb',
     'lib/cash_app_pay/resources/dispute_evidence.rb',
-    'lib/cash_app_pay/resources/merchant.rb'
+    'lib/cash_app_pay/resources/merchant.rb',
+    'lib/cash_app_pay/resources/refund.rb'
   ]
 
   s.require_paths = ['lib']

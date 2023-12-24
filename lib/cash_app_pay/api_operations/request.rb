@@ -3,6 +3,13 @@
 module CashAppPay
   module APIOperations
     module Request
+
+      def request_cash_app_pay_object(method:, path:, params:, opts: {})
+        body = self.class.encode_body(params) unless params.nil?
+        response, opts = self.class.execute_resource_request(method: method, url: path, body_params: body, opts: opts)
+        initialize_from(response.data, opts)
+      end
+
       def self.included(base)
         base.extend(ClassMethods)
       end

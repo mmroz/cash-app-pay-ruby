@@ -298,6 +298,57 @@ module CashAppPay
       module_function :make_merchant, :make_merchant_list, :make_params
     end
 
+    module Refund
+      def self.refund
+        {
+          "id": 'PWCR_da1v3j4p3z15y47adpzzq0whj',
+          "amount": 2500,
+          "currency": 'USD',
+          "customer_id": 'CST_AQmxh4y_QGoNNIG5NUw0jttqyYedL1LklACQdyJ3H-Vs6WmLtP6A_C7XjQNohvY',
+          "merchant_id": 'MMI_4vxs5egfk7hmta3qx2h6rp91x',
+          "status": 'AUTHORIZED',
+          "created_at": '2022-01-01T12:00:00Z',
+          "updated_at": '2022-01-05T12:00:00Z',
+          "grant_id": 'GRG_221243dc6985a6819ff6950c1a21332f7bc4a46ebd49b5a7002908ab768e8e5ff7831e084d0d2c9d8d939793b55eff50',
+          "payment_id": 'PWC_4nn21zy6t0v2yhqg5bvhk7xkq',
+          "reference_id": 'external-id',
+          "metadata": {},
+          "decline_errors": [
+            {
+              "category": 'INVALID_REQUEST_ERROR',
+              "code": 'MISSING_REQUIRED_FIELD',
+              "detail": 'Missing required parameter.',
+              "field": 'field_a[2].field_b'
+            }
+          ]
+        }
+      end
+
+      def make_params
+        {
+          "amount": 100,
+          "currency": 'USD',
+          "merchant_id": 'MMI_4vxs5egfk7hmta3qx2h6rp91x',
+          "capture": true,
+          "payment_id": 'PWC_etdng09kyyqf5zr583v8xcs2k',
+          "reference_id": 'external-id',
+          "metadata": {
+            "key": 'value'
+          }
+        }
+      end
+
+      def make_refund
+        { "refund": refund }
+      end
+
+      def make_refund_list
+        { "refunds": [refund], "cursor": 'Cgl0dmNqa3R4MHk=' }
+      end
+
+      module_function :make_refund, :make_refund_list, :make_params
+    end
+
     module API
       API_BASE = 'sandbox.api.cash.app'
       CLIENT_ID = 'test_client_id'

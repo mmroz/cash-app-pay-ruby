@@ -27,11 +27,12 @@ module CashAppPay
     #   instance
     # end
 
-    def request_cash_app_pay_object(method:, path:, params:, opts: {})
-      body = self.class.encode_body(params) unless params.nil?
-      response, opts = execute_resource_request(method: method, url: path, body_params: body, opts: opts)
-      initialize_from(response.data, opts)
-    end
+    # def request_cash_app_pay_object(method:, path:, params:, opts: {})
+    #   body = self.class.encode_body(params) unless params.nil?
+    #   response, opts = execute_resource_request(method: method, url: path, body_params: body, opts: opts)
+    #   debugger
+    #   initialize_from(response.data, opts)
+    # end
 
     private
 
@@ -64,8 +65,13 @@ module CashAppPay
     # params: Hash of params
     def self.encode_body(params)
       idempotency_key = params.delete(:idempotency_key) || params.delete('idempotency_key')
-      body = Hash[object_name, params]
-      body[:idempotency_key] = idempotency_key unless idempotency_key.nil?
+      body = if params.empty? && !idempotency_key.nil?
+        {idempotency_key: idempotency_key}
+      else
+        named_body_params = Hash[object_name, params]
+        named_body_params[:idempotency_key] = idempotency_key unless idempotency_key.nil?
+        named_body_params
+      end
       body.to_json
     end
   end
