@@ -39,7 +39,8 @@ Gem::Specification.new do |s|
     'lib/cash_app_pay/resources/payment.rb',
     'lib/cash_app_pay/resources/webhook.rb',
     'lib/cash_app_pay/resources/fee_plan.rb',
-    'lib/cash_app_pay/resources/grant.rb'
+    'lib/cash_app_pay/resources/grant.rb',
+    'lib/cash_app_pay/resources/brand.rb'
   ]
 
   s.require_paths = ['lib']

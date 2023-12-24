@@ -151,9 +151,9 @@ module CashAppPay
     module Customer
       def self.customer
         {
-          "id": "CST_AQmxh4y_QGoNNIG5NUw0jttqyYedL1LklACQdyJ3H-Vs6WmLtP6A_C7XjQNohvY",
-          "cashtag": "string",
-          "reference_id": "CUST_123"
+          "id": 'CST_AQmxh4y_QGoNNIG5NUw0jttqyYedL1LklACQdyJ3H-Vs6WmLtP6A_C7XjQNohvY',
+          "cashtag": 'string',
+          "reference_id": 'CUST_123'
         }
       end
 
@@ -171,21 +171,21 @@ module CashAppPay
     module Grant
       def self.grant
         {
-          "id": "GRG_221243dc6985a6819ff6950c1a21332f7bc4a46ebd49b5a7002908ab768e8e5ff7831e084d0d2c9d8d939793b55eff50",
-          "customer_id": "CST_AQmxh4y_QGoNNIG5NUw0jttqyYedL1LklACQdyJ3H-Vs6WmLtP6A_C7XjQNohvY",
-          "request_id": "GRR_1hrxhz136krcq6ezdte2ha5q",
+          "id": 'GRG_221243dc6985a6819ff6950c1a21332f7bc4a46ebd49b5a7002908ab768e8e5ff7831e084d0d2c9d8d939793b55eff50',
+          "customer_id": 'CST_AQmxh4y_QGoNNIG5NUw0jttqyYedL1LklACQdyJ3H-Vs6WmLtP6A_C7XjQNohvY',
+          "request_id": 'GRR_1hrxhz136krcq6ezdte2ha5q',
           "action": {
             "amount": 2500,
-            "currency": "USD",
-            "scope_id": "MMI_4vxs5egfk7hmta3qx2h6rp91x",
-            "type": "ONE_TIME_PAYMENT"
+            "currency": 'USD',
+            "scope_id": 'MMI_4vxs5egfk7hmta3qx2h6rp91x',
+            "type": 'ONE_TIME_PAYMENT'
           },
-          "status": "ACTIVE",
-          "type": "ONE_TIME",
-          "channel": "ONLINE",
-          "created_at": "2019-08-24T14:15:22Z",
-          "updated_at": "2019-08-24T14:15:22Z",
-          "expires_at": "2022-04-01T12:00:00Z"
+          "status": 'ACTIVE',
+          "type": 'ONE_TIME',
+          "channel": 'ONLINE',
+          "created_at": '2019-08-24T14:15:22Z',
+          "updated_at": '2019-08-24T14:15:22Z',
+          "expires_at": '2022-04-01T12:00:00Z'
         }
       end
 
@@ -194,6 +194,42 @@ module CashAppPay
       end
 
       module_function :make_grant
+    end
+
+    module Brand
+      def self.brand
+        {
+          "id": 'B_jsrnuiix',
+          "name": 'Out of this World',
+          "profile_image_url": 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Earth_from_Space.jpg/480px-Earth_from_Space.jpg',
+          "color": '#ffffff',
+          "reference_id": 'external-id',
+          "created_at": '2021-01-01T00:00:00Z',
+          "updated_at": '2021-01-01T00:00:00Z'
+        }
+      end
+
+      def make_params
+        {
+          "name": 'Out of this World',
+          "profile_image_url": 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Earth_from_Space.jpg/480px-Earth_from_Space.jpg',
+          "color": '#ffffff',
+          "reference_id": 'external-id',
+          "metadata": {
+            "key": 'value'
+          }
+        }
+      end
+
+      def make_brand
+        { "brand": brand }
+      end
+
+      def make_brand_list
+        { "brands": [brand], "cursor": 'Cgl0dmNqa3R4MHk=' }
+      end
+
+      module_function :make_brand, :make_brand_list, :make_params
     end
 
     module API

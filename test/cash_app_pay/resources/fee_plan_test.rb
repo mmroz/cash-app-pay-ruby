@@ -3,7 +3,6 @@
 require File.expand_path('../../test_helper', __dir__)
 
 class CustomerRequestTest < Test::Unit::TestCase
-
   def setup
     CashAppPay.api_base = CashAppPay::TestData::API::API_BASE
     CashAppPay.client_id = CashAppPay::TestData::API::CLIENT_ID
@@ -15,7 +14,7 @@ class CustomerRequestTest < Test::Unit::TestCase
   def test_refresh
     stub_request(:get, 'https://sandbox.api.cash.app/network/v1/fee-plans/fee_1')
       .with(
-        headers: CashAppPay::TestData::API::network_api_headers
+        headers: CashAppPay::TestData::API.network_api_headers
       )
       .to_return(status: 200, body: CashAppPay::TestData::FeePlan.make_fee_plan.to_json)
     fee_plan = CashAppPay::FeePlan.new(id: 'fee_1')
@@ -26,7 +25,7 @@ class CustomerRequestTest < Test::Unit::TestCase
   def test_retrieve
     stub_request(:get, 'https://sandbox.api.cash.app/network/v1/fee-plans/fee_1')
       .with(
-        headers: CashAppPay::TestData::API::network_api_headers
+        headers: CashAppPay::TestData::API.network_api_headers
       )
       .to_return(status: 200, body: CashAppPay::TestData::FeePlan.make_fee_plan.to_json)
     fee_plan = CashAppPay::FeePlan.retrieve(id: 'fee_1')
@@ -36,7 +35,7 @@ class CustomerRequestTest < Test::Unit::TestCase
   def test_list
     stub_request(:get, 'https://sandbox.api.cash.app/network/v1/fee-plans?limit=5')
       .with(
-        headers: CashAppPay::TestData::API::network_api_headers
+        headers: CashAppPay::TestData::API.network_api_headers
       )
       .to_return(status: 200, body: CashAppPay::TestData::FeePlan.make_fee_plan_list.to_json)
     fee_plans = CashAppPay::FeePlan.list({ limit: 5 })

@@ -23,7 +23,7 @@ module CashAppPay
     def self.initialize_from_response(klass, response, opts, filters)
       key = "#{klass.object_name}s".to_sym
       list_data = response.data
-      errors = response&.data&.fetch(:errors, {}) || []
+      response&.data&.fetch(:errors, {}) || []
       entries = list_data[key]&.map { |entry| klass.new(entry, opts) } || []
       cursor = list_data[:cursor]
       new(klass, entries, cursor, opts, filters)

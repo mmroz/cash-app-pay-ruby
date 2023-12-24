@@ -2,8 +2,7 @@
 
 require File.expand_path('../../test_helper', __dir__)
 
-class CustomerRequestTest < Test::Unit::TestCase
-
+class CustomerTest < Test::Unit::TestCase
   def setup
     CashAppPay.api_base = CashAppPay::TestData::API::API_BASE
     CashAppPay.client_id = CashAppPay::TestData::API::CLIENT_ID
@@ -15,7 +14,7 @@ class CustomerRequestTest < Test::Unit::TestCase
   def test_refresh
     stub_request(:get, 'https://sandbox.api.cash.app/network/v1/customers/cust_1')
       .with(
-        headers: CashAppPay::TestData::API::network_api_headers
+        headers: CashAppPay::TestData::API.network_api_headers
       )
       .to_return(status: 200, body: CashAppPay::TestData::Customer.make_customer.to_json)
     customer = CashAppPay::Customer.new(id: 'cust_1')
@@ -26,7 +25,7 @@ class CustomerRequestTest < Test::Unit::TestCase
   def test_retrieve
     stub_request(:get, 'https://sandbox.api.cash.app/network/v1/customers/cust_1')
       .with(
-        headers: CashAppPay::TestData::API::network_api_headers
+        headers: CashAppPay::TestData::API.network_api_headers
       )
       .to_return(status: 200, body: CashAppPay::TestData::Customer.make_customer.to_json)
     customer = CashAppPay::Customer.retrieve(id: 'cust_1')
@@ -36,7 +35,7 @@ class CustomerRequestTest < Test::Unit::TestCase
   def test_list
     stub_request(:get, 'https://sandbox.api.cash.app/network/v1/customers?limit=5')
       .with(
-        headers: CashAppPay::TestData::API::network_api_headers
+        headers: CashAppPay::TestData::API.network_api_headers
       )
       .to_return(status: 200, body: CashAppPay::TestData::Customer.make_customer_list.to_json)
     customers = CashAppPay::Customer.list({ limit: 5 })
@@ -48,7 +47,7 @@ class CustomerRequestTest < Test::Unit::TestCase
   def test_retrieve_grant
     stub_request(:get, 'https://sandbox.api.cash.app/network/v1/customers/cust_1/grants/GRG_1')
       .with(
-        headers: CashAppPay::TestData::API::network_api_headers
+        headers: CashAppPay::TestData::API.network_api_headers
       )
       .to_return(status: 200, body: CashAppPay::TestData::Grant.make_grant.to_json)
     customer = CashAppPay::Customer.new(id: 'cust_1')
@@ -63,7 +62,7 @@ class CustomerRequestTest < Test::Unit::TestCase
   def test_revoke_grant
     stub_request(:post, 'https://sandbox.api.cash.app/network/v1/customers/cust_1/grants/GRG_1/revoke')
       .with(
-        headers: CashAppPay::TestData::API::network_api_headers
+        headers: CashAppPay::TestData::API.network_api_headers
       )
       .to_return(status: 200, body: CashAppPay::TestData::Grant.make_grant.to_json)
     customer = CashAppPay::Customer.new(id: 'cust_1')

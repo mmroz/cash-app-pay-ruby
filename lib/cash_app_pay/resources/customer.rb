@@ -14,9 +14,10 @@ module CashAppPay
     end
 
     def retrieve_grant(grant, opts = {})
-    CashAppPay::Grant.request_cash_app_pay_object(
+      CashAppPay::Grant.request_cash_app_pay_object(
         method: :get,
-        path: format('/network/v1/customers/%<customer>s/grants/%<grant>s', { customer: CGI.escape(self), grant: CGI.escape(grant) }),
+        path: format('/network/v1/customers/%<customer>s/grants/%<grant>s',
+                     { customer: CGI.escape(self), grant: CGI.escape(grant) }),
         params: nil,
         opts: opts
       )
@@ -25,16 +26,18 @@ module CashAppPay
     def self.retrieve_grant(customer, grant, opts = {})
       CashAppPay::Grant.request_cash_app_pay_object(
         method: :get,
-        path: format('/network/v1/customers/%<customer>s/grants/%<grant>s', { customer: CGI.escape(customer), grant: CGI.escape(grant) }),
+        path: format('/network/v1/customers/%<customer>s/grants/%<grant>s',
+                     { customer: CGI.escape(customer), grant: CGI.escape(grant) }),
         params: nil,
         opts: opts
       )
     end
 
     def revoke_grant(grant, opts = {})
-    CashAppPay::Grant.request_cash_app_pay_object(
+      CashAppPay::Grant.request_cash_app_pay_object(
         method: :post,
-        path: format('/network/v1/customers/%<customer>s/grants/%<grant>s/revoke', { customer: CGI.escape(self), grant: CGI.escape(grant) }),
+        path: format('/network/v1/customers/%<customer>s/grants/%<grant>s/revoke',
+                     { customer: CGI.escape(self), grant: CGI.escape(grant) }),
         params: nil,
         opts: opts
       )
@@ -43,7 +46,8 @@ module CashAppPay
     def self.revoke_grant(customer, grant, opts = {})
       CashAppPay::Grant.request_cash_app_pay_object(
         method: :post,
-        path: format('/network/v1/customers/%<customer>s/grants/%<grant>s/revoke', { customer: CGI.escape(customer), grant: CGI.escape(grant) }),
+        path: format('/network/v1/customers/%<customer>s/grants/%<grant>s/revoke',
+                     { customer: CGI.escape(customer), grant: CGI.escape(grant) }),
         params: nil,
         opts: opts
       )

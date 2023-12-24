@@ -3,7 +3,6 @@
 module CashAppPay
   module APIOperations
     module Retrieve
-
       def refresh
         resp, opts = self.class.execute_resource_request(method: :get, url: resource_url, opts: @opts)
         initialize_from(resp.data, opts)
@@ -14,7 +13,6 @@ module CashAppPay
       end
 
       module ClassMethods
-
         def retrieve(id, opts = {})
           instance = new({ id: id }, opts)
           instance.refresh
