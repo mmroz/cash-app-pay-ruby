@@ -22,6 +22,7 @@ require 'cash_app_pay/api_operations/request'
 require 'cash_app_pay/api_operations/update'
 require 'cash_app_pay/api_operations/save'
 require 'cash_app_pay/api_operations/retrieve'
+require 'cash_app_pay/api_operations/upsert'
 
 require 'cash_app_pay/errors'
 require 'cash_app_pay/utils'
@@ -42,6 +43,9 @@ require 'cash_app_pay/resources/fee_plan'
 require 'cash_app_pay/resources/customer'
 require 'cash_app_pay/resources/grant'
 require 'cash_app_pay/resources/brand'
+require 'cash_app_pay/resources/dispute'
+require 'cash_app_pay/resources/dispute_evidence'
+require 'cash_app_pay/resources/merchant'
 
 module CashAppPay
   @config = CashAppPay::CashAppPayConfiguration.setup

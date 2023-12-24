@@ -2,7 +2,7 @@
 
 module CashAppPay
   class CashAppPayClient
-    def self.execute_api_request(method_name:, path:, url_params:, body_params: nil, opts: {})
+    def self.execute_request(method_name:, path:, url_params:, body_params: nil, opts: {})
       base_uri = opts[:api_base] || CashAppPay.api_base
 
       method = method_name.to_s.upcase

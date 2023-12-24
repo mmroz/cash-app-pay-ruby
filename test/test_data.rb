@@ -232,6 +232,75 @@ module CashAppPay
       module_function :make_brand, :make_brand_list, :make_params
     end
 
+    module Merchant
+      def self.merchant
+        {
+          "brand_id": "brand ID",
+          "category": "5432",
+          "country": "US",
+          "currency": "USD",
+          "name": "merchant name",
+          "reference_id": "reference ID",
+          "address": {
+            "address_line_1": "1215 4th Ave",
+            "address_line_2": "Suite 2300",
+            "locality": "Seattle",
+            "country": "US",
+            "postal_code": "98161-1001",
+            "administrative_district_level_1": "Washington"
+          },
+          "site_url": "https://example.com",
+          "status": "ACTIVE",
+          "metadata": {
+            "key": "value"
+          },
+          "default_fee_plans": {
+            "in_app_fee_plan_id": "FEE_kewjsmjt35t8qhzyjeqcst5me",
+            "in_person_fee_plan_id": "FEE_kewjsmjt35t8qhzyjeqcst5me",
+            "online_fee_plan_id": "FEE_kewjsmjt35t8qhzyjeqcst5me"
+          }
+        }
+      end
+
+      def make_params
+        {
+          "name": "merchant name",
+          "brand_id": "brand ID",
+          "country": "US",
+          "currency": "USD",
+          "category": "5432",
+          "reference_id": "reference ID",
+          "address": {
+            "address_line_1": "1215 4th Ave",
+            "address_line_2": "Suite 2300",
+            "locality": "Seattle",
+            "country": "US",
+            "postal_code": "98161-1001",
+            "administrative_district_level_1": "Washington"
+          },
+          "site_url": "https://example.com",
+          "metadata": {
+            "key": "value"
+          },
+          "default_fee_plans": {
+            "in_app_fee_plan_id": "FEE_kewjsmjt35t8qhzyjeqcst5me",
+            "in_person_fee_plan_id": "FEE_kewjsmjt35t8qhzyjeqcst5me",
+            "online_fee_plan_id": "FEE_kewjsmjt35t8qhzyjeqcst5me"
+          }
+        }
+      end
+
+      def make_merchant
+        { "merchant": merchant }
+      end
+
+      def make_merchant_list
+        { "merchants": [merchant], "cursor": 'Cgl0dmNqa3R4MHk=' }
+      end
+
+      module_function :make_merchant, :make_merchant_list, :make_params
+    end
+
     module API
       API_BASE = 'sandbox.api.cash.app'
       CLIENT_ID = 'test_client_id'
