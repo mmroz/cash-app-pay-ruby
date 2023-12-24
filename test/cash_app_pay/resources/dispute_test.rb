@@ -3,5 +3,5 @@
 require File.expand_path('../../test_helper', __dir__)
 
 class DisputeTest < Test::Unit::TestCase
-  # TODO - add tests
+  # TODO: - add tests
 end

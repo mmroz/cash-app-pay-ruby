@@ -3,7 +3,6 @@
 module CashAppPay
   module APIOperations
     module Upsert
-
       def self.included(base)
         base.extend(ClassMethods)
       end
