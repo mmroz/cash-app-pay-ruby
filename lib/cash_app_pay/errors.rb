@@ -20,4 +20,26 @@ module CashAppPay
       @param = param
     end
   end
+
+  # AuthenticationError is raised when invalid credentials are used to connect
+  # to Cash App servers.
+  class AuthenticationError < CashAppPayError
+  end
+
+  class APIError < CashAppPayError
+    attr_reader :http_status, :http_body
+
+    def initialize(message, http_status:, http_body:)
+      super(message)
+      @http_status = http_status
+      @http_body = http_body
+    end
+  end
+
+  class APIResponseError < CashAppPayError
+    def initialize(response)
+      error_object = ErrorObject.new(response)
+      super(error_object.to_s)
+    end
+  end
 end

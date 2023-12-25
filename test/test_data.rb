@@ -360,7 +360,7 @@ module CashAppPay
       module_function :make_refund, :make_refund_list, :make_params
     end
 
-    module ApiKey
+    module APIKey
       def self.api_key
         {
           "id": 'KEY_2f6cd0d5cc26b34ac8785026b149797ecc0758be3dc3a857d405f2f62074ef30',

@@ -34,6 +34,7 @@ require 'cash_app_pay/cash_app_pay_response'
 require 'cash_app_pay/list_object'
 require 'cash_app_pay/api_resource'
 require 'cash_app_pay/cash_app_pay_configuration'
+require 'cash_app_pay/error_object'
 
 # Named API resources
 require 'cash_app_pay/resources/customer_request'

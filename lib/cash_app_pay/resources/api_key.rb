@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module CashAppPay
-  class ApiKey < APIResource
+  class APIKey < APIResource
     extend CashAppPay::APIOperations::Create
     include CashAppPay::APIOperations::Save
     extend CashAppPay::APIOperations::List

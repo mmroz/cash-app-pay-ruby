@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
     'lib/cash_app_pay/api_operations/save.rb',
     'lib/cash_app_pay/api_operations/retrieve.rb',
     'lib/cash_app_pay/errors.rb',
+    'lib/cash_app_pay/error_object.rb',
     'lib/cash_app_pay/utils.rb',
     'lib/cash_app_pay/connection_manager.rb',
     'lib/cash_app_pay/persistent_http_client.rb',
