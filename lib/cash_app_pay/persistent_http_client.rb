@@ -17,7 +17,7 @@ module CashAppPay
         # before getting a connection manager
         # we first clear all old ones
         remove_old_managers
-        Thread.current[:cash_app_pay__internal] ||= new_manager
+        Thread.current[:stripe_client__internal_use_only] ||= new_manager
       end
 
       def new_manager
