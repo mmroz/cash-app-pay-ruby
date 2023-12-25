@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'cash_app_pay/version'
+
 module CashAppPay
   class CashAppPayClient
     def self.execute_request(method_name:, path:, url_params:, body_params: nil, opts: {})
@@ -26,6 +28,10 @@ module CashAppPay
       CashAppPayResponse.from_net_http(response)
     end
 
+    def self.user_agent
+      "cash-app-pay-ruby/v#{CashAppPay::VERSION} RubyBindings (#{RUBY_VERSION} p#{RUBY_PATCHLEVEL} (#{RUBY_RELEASE_DATE})) RUBY_PLATFORM #{defined?(RUBY_ENGINE) ? "(#{RUBY_ENGINE})" : ''}"
+    end
+
     CUSTOMER_REQUEST_API_PATH_PREFIX = '/customer-request/'
     NETWORK_API_PATH_PREFIX = '/network/'
     MANAGE_API_PATH_PREFIX = '/management/'
@@ -35,7 +41,8 @@ module CashAppPay
       {
         "Authorization": ['Client', client_id].join(' '),
         "Accept": 'application/json',
-        "Content-Type": 'application/json'
+        "Content-Type": 'application/json',
+        "User-Agent": user_agent
       }
     end
 
@@ -51,7 +58,8 @@ module CashAppPay
         "X-Region": region,
         "X-Signature": signature,
         "Accept": 'application/json',
-        "Content-Type": 'application/json'
+        "Content-Type": 'application/json',
+        "User-Agent": user_agent
       }
     end
   end

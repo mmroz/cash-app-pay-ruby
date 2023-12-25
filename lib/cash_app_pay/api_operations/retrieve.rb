@@ -4,8 +4,8 @@ module CashAppPay
   module APIOperations
     module Retrieve
       def refresh
-        resp, opts = self.class.execute_resource_request(method: :get, url: resource_url, opts: @opts)
-        initialize_from(resp.data, opts)
+        response, opts = self.class.execute_resource_request(method: :get, url: resource_url, opts: @opts)
+        initialize_from(response.data, opts)
       end
 
       def self.included(base)

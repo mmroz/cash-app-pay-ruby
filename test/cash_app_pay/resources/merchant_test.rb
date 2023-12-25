@@ -51,7 +51,7 @@ class MerchantTest < Test::Unit::TestCase
         body: Hash[:merchant, params, :idempotency_key, 'idempotency'].to_json,
         headers: CashAppPay::TestData::API.network_api_headers
       )
-      .to_return(status: 200, body: CashAppPay::TestData::Merchant.make_merchant.to_json, headers: {})
+      .to_return(status: 200, body: CashAppPay::TestData::Merchant.make_merchant.to_json)
     params_with_idempotency = params.merge(idempotency_key: 'idempotency')
     merchant = CashAppPay::Merchant.create(params_with_idempotency)
     assert_equal 'Example Business Name', merchant.name
@@ -63,7 +63,7 @@ class MerchantTest < Test::Unit::TestCase
         body: Hash[:merchant, CashAppPay::TestData::Merchant.make_params].to_json,
         headers: CashAppPay::TestData::API.network_api_headers
       )
-      .to_return(status: 200, body: CashAppPay::TestData::Merchant.make_merchant.to_json, headers: {})
+      .to_return(status: 200, body: CashAppPay::TestData::Merchant.make_merchant.to_json)
     merchant = CashAppPay::Merchant.update('MMI_1', CashAppPay::TestData::Merchant.make_params)
     assert_equal 'Example Business Name', merchant.name
   end
@@ -74,7 +74,7 @@ class MerchantTest < Test::Unit::TestCase
         body: Hash[:merchant, CashAppPay::TestData::Merchant.make_params].to_json,
         headers: CashAppPay::TestData::API.network_api_headers
       )
-      .to_return(status: 200, body: CashAppPay::TestData::Merchant.make_merchant.to_json, headers: {})
+      .to_return(status: 200, body: CashAppPay::TestData::Merchant.make_merchant.to_json)
     merchant = CashAppPay::Merchant.upsert('MMI_1', CashAppPay::TestData::Merchant.make_params)
     assert_equal 'Example Business Name', merchant.name
   end

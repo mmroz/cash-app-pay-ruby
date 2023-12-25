@@ -51,7 +51,7 @@ class BrandTest < Test::Unit::TestCase
         body: Hash[:brand, params, :idempotency_key, 'idempotency'].to_json,
         headers: CashAppPay::TestData::API.network_api_headers
       )
-      .to_return(status: 200, body: CashAppPay::TestData::Brand.make_brand.to_json, headers: {})
+      .to_return(status: 200, body: CashAppPay::TestData::Brand.make_brand.to_json)
     params_with_idempotency = params.merge(idempotency_key: 'idempotency')
     brand = CashAppPay::Brand.create(params_with_idempotency)
     assert_equal 'Out of this World', brand.name
@@ -63,7 +63,7 @@ class BrandTest < Test::Unit::TestCase
         body: Hash[:brand, CashAppPay::TestData::Brand.make_params].to_json,
         headers: CashAppPay::TestData::API.network_api_headers
       )
-      .to_return(status: 200, body: CashAppPay::TestData::Brand.make_brand.to_json, headers: {})
+      .to_return(status: 200, body: CashAppPay::TestData::Brand.make_brand.to_json)
     brand = CashAppPay::Brand.update('b_1', CashAppPay::TestData::Brand.make_params)
     assert_equal 'Out of this World', brand.name
   end
@@ -74,7 +74,7 @@ class BrandTest < Test::Unit::TestCase
         body: Hash[:brand, CashAppPay::TestData::Brand.make_params].to_json,
         headers: CashAppPay::TestData::API.network_api_headers
       )
-      .to_return(status: 200, body: CashAppPay::TestData::Brand.make_brand.to_json, headers: {})
+      .to_return(status: 200, body: CashAppPay::TestData::Brand.make_brand.to_json)
     brand = CashAppPay::Brand.upsert('b_1', CashAppPay::TestData::Brand.make_params)
     assert_equal 'Out of this World', brand.name
   end

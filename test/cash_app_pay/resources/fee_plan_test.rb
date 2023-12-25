@@ -2,7 +2,7 @@
 
 require File.expand_path('../../test_helper', __dir__)
 
-class CustomerRequestTest < Test::Unit::TestCase
+class FeePlanTest < Test::Unit::TestCase
   def setup
     CashAppPay.api_base = CashAppPay::TestData::API::API_BASE
     CashAppPay.client_id = CashAppPay::TestData::API::CLIENT_ID

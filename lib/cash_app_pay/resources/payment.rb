@@ -51,11 +51,11 @@ module CashAppPay
       )
     end
 
-    def self.void_by_idempotency_key(idempotency_key, opts = {})
+    def self.void_by_idempotency_key(params = {}, opts = {})
       request_cash_app_pay_object(
         method: :post,
-        path: 'network/v1/payments/void-by-idempotency-key',
-        params: { idempotency_key: idempotency_key },
+        path: '/network/v1/payments/void-by-idempotency-key',
+        params: params,
         opts: opts
       )
     end
