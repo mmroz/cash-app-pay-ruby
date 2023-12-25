@@ -26,7 +26,7 @@ module CashAppPay
     end
 
     def to_str
-      self['id']
+      self['id'].to_s
     end
 
     def inspect

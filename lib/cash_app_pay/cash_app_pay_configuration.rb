@@ -11,11 +11,7 @@ module CashAppPay
     end
 
     def initialize
-      @client_id = 'CASH_CHECKOUT_SANDBOX' # 'CAS-CI_PAYKIT_MOBILE_DEMO' # TODO: - remove this
-      @api_base = 'sandbox.api.cash.app' # TODO: - update this with prod
-      @region = 'SFO' # TODO: - remove this
-      @signature = 'sandbox:skip-signature-check' # TODO: - remove this
-      @api_key = 'KEY_pph2za1yxkwk72wzy6k990vgx' # TODO: - remove this
+      @api_base = Endpoint::Production
     end
   end
 end

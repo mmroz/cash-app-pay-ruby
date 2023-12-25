@@ -29,7 +29,7 @@ module CashAppPay
       response = http.request(request)
 
       begin
-        resp =  CashAppPayResponse.from_net_http(response)
+        resp = CashAppPayResponse.from_net_http(response)
         handle_error_response(resp.error_data) if resp.error_data
       rescue JSON::ParserError
         raise general_api_error(http_resp.code.to_i, http_resp.body)
@@ -38,18 +38,38 @@ module CashAppPay
       resp
     end
 
-    private
-
     def self.handle_error_response(response_errors)
-      if error_response = response_errors.first
-        raise APIResponseError.new(error_response)
-      end
+      return unless (error_response = response_errors.first)
+
+      raise APIResponseError, error_response
     end
 
     def self.check_client_id!(client_id)
-      unless client_id
-        raise AuthenticationError, "No API key provided. Set your API key using CashAppPay.api_key = <API-KEY>"
-      end
+      return if client_id
+
+      raise AuthenticationError, 'No Client ID provided. Set your API key using CashAppPay.client_id = <CLIENT-ID>'
+    end
+
+    def self.check_api_base!(api_base)
+      return if api_base
+
+      raise AuthenticationError, 'No API base provided. Set your API key using CashAppPay.api_base = <API-BASE>'
+    end
+
+    def self.check_region!(region)
+      raise AuthenticationError, 'No Region provided. Set your API key using CashAppPay.region = <REGION>' unless region
+    end
+
+    def self.check_signature!(signature)
+      return if signature
+
+      raise AuthenticationError, 'No Signature provided. Set your API key using CashAppPay.signature = <SIGNATURE>'
+    end
+
+    def self.check_api_key!(api_key)
+      return if api_key
+
+      raise AuthenticationError, 'No Region provided. Set your API key using CashAppPay.api_key = <API-KEY>'
     end
 
     def self.general_api_error(status, body)
@@ -78,6 +98,10 @@ module CashAppPay
       api_key = opts[:api_key] || CashAppPay.api_key
       signature = opts[:signature] || CashAppPay.signature
       region = opts[:region] || CashAppPay.region
+
+      check_api_key!(api_key)
+      check_signature!(signature)
+      check_region!(region)
 
       authorization = ['Client', client_id, api_key].join(' ')
       {

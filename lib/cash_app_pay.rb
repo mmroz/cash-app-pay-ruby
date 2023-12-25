@@ -25,7 +25,7 @@ require 'cash_app_pay/api_operations/retrieve'
 require 'cash_app_pay/api_operations/upsert'
 
 require 'cash_app_pay/errors'
-require 'cash_app_pay/utils'
+require 'cash_app_pay/endpoint'
 require 'cash_app_pay/connection_manager'
 require 'cash_app_pay/persistent_http_client'
 require 'cash_app_pay/cash_app_pay_client'
@@ -51,6 +51,10 @@ require 'cash_app_pay/resources/refund'
 require 'cash_app_pay/resources/api_key'
 
 module CashAppPay
+  SANDBOX = Logger::DEBUG
+  PROD = Logger::ERROR
+  PROD_SANDBOX = Logger::INFO
+
   @config = CashAppPay::CashAppPayConfiguration.setup
 
   class << self

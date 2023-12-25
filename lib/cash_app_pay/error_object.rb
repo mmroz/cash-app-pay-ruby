@@ -2,6 +2,5 @@
 
 module CashAppPay
   class ErrorObject < CashAppPayObject
-
   end
 end
