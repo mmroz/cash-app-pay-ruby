@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'cash_app_pay/endpoint'
+
 module CashAppPay
   class CashAppPayConfiguration
     attr_accessor :client_id, :api_base, :region, :signature, :api_key
@@ -11,7 +13,7 @@ module CashAppPay
     end
 
     def initialize
-      @api_base = Endpoint::Production
+      @api_base = Endpoint::PRODUCTION
     end
   end
 end

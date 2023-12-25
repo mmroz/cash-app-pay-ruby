@@ -51,10 +51,6 @@ require 'cash_app_pay/resources/refund'
 require 'cash_app_pay/resources/api_key'
 
 module CashAppPay
-  SANDBOX = Logger::DEBUG
-  PROD = Logger::ERROR
-  PROD_SANDBOX = Logger::INFO
-
   @config = CashAppPay::CashAppPayConfiguration.setup
 
   class << self
