@@ -5,7 +5,6 @@ require 'cgi'
 require 'forwardable'
 require 'uri'
 require 'net/http'
-require 'byebug'
 require 'securerandom'
 require 'time'
 
