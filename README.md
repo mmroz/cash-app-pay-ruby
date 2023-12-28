@@ -21,7 +21,7 @@ You don't need this source code unless you want to modify the gem. If you just
 want to use the package, just run:
 
 ```sh
-gem install cash-app-pay
+gem install cash_app_pay
 ```
 
 If you want to build the gem from source:
@@ -56,7 +56,7 @@ compromised in transit and alter the code of gems fetched securely over https:
 source 'https://rubygems.org'
 
 gem 'rails'
-gem 'cash-app-pay'
+gem 'cash_app_pay'
 ```
 
 ## Usage - Customer Request API
@@ -64,7 +64,7 @@ gem 'cash-app-pay'
 The libaray needs to be configured with your account's client_id. Set `CashAppPay.client_id` to its value:
 
 ```ruby
-require 'cash-app-pay'
+require 'cash_app_pay'
 CashAppPay.client_id = 'CAS...'
 
 # create a Customer Request
@@ -79,7 +79,7 @@ CashAppPay::CustomerRequest.retrieve('GRR_123456789')
 The libaray needs to be configured with your account's client_id as well as api_key, signature and region. Set `CashAppPay.client_id`, `CashAppPay.api_key`, `CashAppPay.signature` and `CashAppPay.region`:
 
 ```ruby
-require 'cash-app-pay'
+require 'cash_app_pay'
 CashAppPay.client_id = 'CAS...'
 CashAppPay.region = '...'
 CashAppPay.signature = '...'
@@ -98,7 +98,7 @@ For apps that need to use multiple keys during the lifetime of a process it's po
 per-request:
 
 ```ruby
-require 'cash-app-pay'
+require 'cash_app_pay'
 
 CashAppPay::CustomerRequest.create(
     { idempotency_key: 'xyz_123_...', channel: 'IN_APP', ... },
