@@ -120,3 +120,9 @@ Run a single test suite:
 ```sh
 bundle exec rake test TEST=test/cash_app_pay/resources/payment_test.rb
 ```
+
+## Example
+
+There is a sample project in Ruby On Rails at:
+
+https://github.com/mmroz/cash-app-pay-rails-example
