@@ -1,30 +1,17 @@
 # frozen_string_literal: true
 
 module CashAppPay
-  # TODO: - I can make this a sublcass of CashAppPay::APIResource
   class ListObject
     include Enumerable
 
-    attr_accessor :data, :cursor, :opts, :klass, :filters
+    attr_accessor :url, :data, :cursor, :opts, :klass, :filters
 
-    def self.empty_list(klass, opts = {}, cursor = nil, filters = {})
-      ListObject.new(klass, [], cursor, opts, filters)
-    end
-
-    def initialize(klass, data, cursor, opts, filters)
-      self.klass = klass
-      self.data = data
-      self.cursor = cursor
-      self.opts = opts
-      self.filters = filters
-    end
-
-    def self.initialize_from_response(klass, response, opts, filters)
+    def self.initialize_from_response(klass, response, opts, filters, url = nil)
       key = "#{klass.object_name}s".to_sym
       list_data = response.data
       entries = list_data[key]&.map { |entry| klass.new(entry, opts) } || []
       cursor = list_data[:cursor]
-      new(klass, entries, cursor, opts, filters)
+      new(klass, entries, cursor, opts, filters, url)
     end
 
     def inspect
@@ -58,7 +45,40 @@ module CashAppPay
 
       params = filters.merge(cursor: cursor).merge(params)
 
-      klass.list(params, opts)
+      # Calls List on the klass or the URL if one exists.
+      # This is a work around for resources that contain dynamic URLs.
+      # See CashAppPay::Dispute#list_dispute_evidence
+      if url.nil?
+        klass.list(params, opts)
+      else
+        list(params, opts)
+      end
+    end
+
+    private
+
+    def self.empty_list(klass, opts = {}, cursor = nil, filters = {}, url = nil)
+      ListObject.new(url, klass, [], cursor, opts, filters)
+    end
+
+    def initialize(klass, data, cursor, opts, filters, url)
+      self.klass = klass
+      self.data = data
+      self.cursor = cursor
+      self.opts = opts
+      self.filters = filters
+      self.url = url
+    end
+
+    def list(_params, opts)
+      response, opts = klass.execute_resource_request(
+        method: :get,
+        url: url,
+        url_params: filters,
+        body_params: nil,
+        opts: opts
+      )
+      ListObject.initialize_from_response(klass, response, opts, filters, url)
     end
   end
 end
