@@ -49,23 +49,29 @@ module CashAppPay
       )
     end
 
-    # def list_dispute_evidence(opts = {})
-    #   request_cash_app_pay_object(
-    #     method: :post,
-    #     path: format('/network/v1/disputes/%<dispute>s/challenge', { dispute: CGI.escape(self) }),
-    #     params: nil,
-    #     opts: opts
-    #   )
-    # end
+    def list_dispute_evidence(filters = {}, opts = {})
+      url = format('/network/v1/disputes/%<dispute>s/evidence', { dispute: CGI.escape(self) })
+      response, opts = DisputeEvidence.execute_resource_request(
+        method: :get,
+        url: url,
+        url_params: filters,
+        body_params: nil,
+        opts: opts
+      )
+      ListObject.initialize_from_response(DisputeEvidence, response, opts, filters, url)
+    end
 
-    # def self.list_dispute_evidence(dispute, opts = {})
-    #   equest_cash_app_pay_object(
-    #     method: :post,
-    #     path: format('/network/v1/disputes/%<dispute>s/challenge', { dispute: CGI.escape(dispute) }),
-    #     params: nil,
-    #     opts: opts
-    #   )
-    # end
+    def self.list_dispute_evidence(dispute, opts = {})
+      url = format('/network/v1/disputes/%<dispute>s/evidence', { dispute: CGI.escape(dispute) })
+      response, opts = DisputeEvidence.execute_resource_request(
+        method: :get,
+        url: url,
+        url_params: filters,
+        body_params: nil,
+        opts: opts
+      )
+      ListObject.initialize_from_response(DisputeEvidence, response, opts, filters, url)
+    end
 
     def create_dispute_evidence_text(params = {}, opts = {})
       CashAppPay::DisputeEvidence.request_cash_app_pay_object(
